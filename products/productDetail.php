@@ -95,6 +95,9 @@ $xrp_buy_price = $xrp_public->data->bids[0]->price;
             color: black;
             margin-left: 10px;
         }
+        
+        .top_bar_fix{position:fixed; top:11px; left:190px; margin-right: 190px;}
+        .pd_top_80{padding-top:80px;}
     </style>
     
     <body>
@@ -152,7 +155,7 @@ $xrp_buy_price = $xrp_public->data->bids[0]->price;
                             echo "<a class='w3-button w3-padding-large menuFont' href='../order/orderList.php'>주문정보</a>";
                     ?>
                     
-                    <a class="w3-button w3-padding-large menuFont">고객센터</a>
+                    <!--<a class="w3-button w3-padding-large menuFont">고객센터</a>-->
                     <a class="w3-button" style="padding-top:8px; padding-bottom:9px;"><i class="fa fa-shopping-cart"></i></a>
                     <a class="w3-button" style="padding-top:8px; padding-bottom:9px;"><i class="fa fa-search"></i></a>
                 </div>
@@ -261,7 +264,7 @@ $xrp_buy_price = $xrp_public->data->bids[0]->price;
                 </div>
             </div>
             
-            <div class="detail_tab_floatable" style="margin-top:30px">
+            <div class="detail_tab_floatable" id="topBar" style="margin-top:30px">
                 <ul class="tab_floatable" style="margin-bottom:0px">
                     <li class="item"><a class="link" aria-selected="true" href="#dts">상세정보</a></li>
                     <li class="item"><a class="link" aria-selected="false" href="#revw">리뷰</a></li>
@@ -270,7 +273,7 @@ $xrp_buy_price = $xrp_public->data->bids[0]->price;
                 </ul>
             </div>
 
-            <div class="w3-center">
+            <div class="w3-center" id="fixNextTag">
                 <img src="../imgs/products/<?php echo $row['main_img'] ?>" />
             </div>
             
@@ -439,6 +442,38 @@ $xrp_buy_price = $xrp_public->data->bids[0]->price;
             <p>Contacted by <a href="../index.php" title="www.megacoinshop.com" target="_blank" class="w3-hover-text-green" style="text-decoration:none">www.MegaCoinShop.com</a></p>
         </footer>
 
+        <script src="//code.jquery.com/jquery-1.12.4.min.js"></script>
+        <!-- tab_floatable detail_tab_floatable -->
+        <script>
+            /*
+            $(function(){
+                $(window).scroll(function(){  //스크롤하면 아래 코드 실행
+                var num = $(this).scrollTop();  // 스크롤값
+                if( num > 10 ){  // 스크롤을 36이상 했을 때
+                    $(".detail_tab_floatable").css("position","fixed");
+                }else{
+                    $(".detail_tab_floatable").css("position","absolute");
+                }
+                });
+            });
+            */
+            $(document).ready(function(){
+                var topBar = $("#topBar").offset();
+                $(window).scroll(function(){
+                    var docScrollY = $(document).scrollTop();
+                    var barThis = $("#topBar");
+                    var fixNext = $("#fixNextTag");
+                    if( docScrollY > topBar.top ) {
+                        barThis.addClass("top_bar_fix");
+                        fixNext.addClass("pd_top_80");
+                    }else{
+                        barThis.removeClass("top_bar_fix");
+                        fixNext.removeClass("pd_top_80");
+                    }
+                });
+            });
+        </script>
+        
         <script>
             var amount = 1;
 
@@ -507,7 +542,6 @@ $xrp_buy_price = $xrp_public->data->bids[0]->price;
                 }
                 var after = $(".section > div > input").val();
                 var modify_price = (price*after)+parseFloat(fee);
-                var amount = now;
                 $("a[name=LastPrice]").text(modify_price);
                 $("a[name=buy_modal_last_price]").text(modify_price);
                 $("a[name=buy_amount]").text(amount);
@@ -559,6 +593,5 @@ $xrp_buy_price = $xrp_public->data->bids[0]->price;
 				});
 			}
 		</script>
-        
     </body>
 </html>
