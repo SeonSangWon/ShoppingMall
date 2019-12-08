@@ -11,6 +11,8 @@ $("#login_form").submit(function (e) {
             if (JSON.error != '') {
                 $("#"+action+" #display_error").show().html(JSON.error);
             } else {
+                //root경로 폴더 안에 index.php가 위치할 경우 ""
+                //root경로에 index.php가 위치할 경우 "
                 window.location.href = "";
             }
         }
