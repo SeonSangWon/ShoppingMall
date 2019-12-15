@@ -3,6 +3,17 @@ require("../connect.php");
 require("../xcoin_api_client.php");
 
 session_start();
+
+//관리자 접속
+if(! $_SESSION['admin'])
+{
+    echo "
+        <script>
+            location.href='admin/index.php';
+        </script>
+    ";
+}
+
 ?>
 <!DOCTYPE html>
 <html>
