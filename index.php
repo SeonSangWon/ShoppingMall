@@ -7,7 +7,11 @@ session_start();
 //관리자 접속
 if($_SESSION['admin'])
 {
-    echo("<meta http-equiv='refresh' content='0;url=admin/index.php'>");
+    echo "
+        <script>
+            location.href='admin/index.php';
+        </script>
+    ";
 }
     
 $query = "SELECT * FROM product";
