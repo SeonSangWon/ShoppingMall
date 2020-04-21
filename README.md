@@ -1,7 +1,7 @@
 # ShoppingMall
 암호화 화폐를 이용한 전자상거래 웹 페이지 E-commerce Using Cryptocurrency
 
-Language : PHP 7.2
+Language : PHP 7.2   
 Database : MySQL 5.5
 
 ------------------------------------------------------------------
